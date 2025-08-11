@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  spotify-skip-stats:
+    build: .
+    container_name: spotify-skip-stats
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      SPOTIFY_CLIENT_ID: "${SPOTIFY_CLIENT_ID}"
+      SPOTIFY_CLIENT_SECRET: "${SPOTIFY_CLIENT_SECRET}"
+    volumes:
+      # Mount the local streaming_history folder into the container
+      - ./streaming_history:/app/streaming_history:ro
+
