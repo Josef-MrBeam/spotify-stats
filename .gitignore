@@ -1,0 +1,5 @@
+streaming_history/
+.venv/
+.vscode/
+.cache
+.env
