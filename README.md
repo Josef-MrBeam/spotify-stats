@@ -62,7 +62,7 @@ python-dotenv
 4. Set your **Redirect URI** to:
 
    ```
-   http://localhost:5000/callback
+   https://127.0.0.1:/callback
    ```
 
 ---
@@ -83,7 +83,28 @@ SPOTIFY_CLIENT_SECRET=your_client_secret_here
 
 ---
 
-### 5. Add your Spotify Streaming History
+
+### 5. Create `.cache` file
+
+run the following scrtipt locally
+
+```python
+from spotipy.oauth2 import SpotifyOAuth
+import spotipy
+sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope="user-library-read"))
+sp.current_user()
+```
+
+A .cache file should be created in the project folder.
+
+**⚠ Important:**
+
+* Never commit `.env` to GitHub (already added to `.gitignore`)
+* When deploying, set these as **environment variables** on the server
+
+---
+
+### 6. Add your Spotify Streaming History
 
 * Download your **Extended Streaming History** from [Spotify Privacy Settings](https://www.spotify.com/account/privacy/)
 * Extract the `.zip`
@@ -95,7 +116,7 @@ SPOTIFY_CLIENT_SECRET=your_client_secret_here
 
 ---
 
-### 6. Run the Flask app
+### 7. Run the Flask app
 
 ```bash
 python app.py
