@@ -97,11 +97,6 @@ sp.current_user()
 
 A .cache file should be created in the project folder.
 
-**⚠ Important:**
-
-* Never commit `.env` to GitHub (already added to `.gitignore`)
-* When deploying, set these as **environment variables** on the server
-
 ---
 
 ### 6. Add your Spotify Streaming History
