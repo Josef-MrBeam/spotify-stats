@@ -1,0 +1,32 @@
+name: Build and Deploy Spotify Skip Stats
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker Image
+        run: docker build -t spotify-skip-stats-image .
+
+      - name: Stop and Remove Existing Container
+        run: docker stop spotify-skip-stats || true && docker rm spotify-skip-stats || true
+
+      - name: Load Docker Image
+        run: docker save spotify-skip-stats-image | docker load
+
+      - name: Run Docker Container with Secrets
+        run: |
+          docker run -d \
+            --name spotify-skip-stats \
+            -p 8000:8000 \
+            -e SPOTIFY_CLIENT_ID=${{ secrets.SPOTIFY_CLIENT_ID }} \
+            -e SPOTIFY_CLIENT_SECRET=${{ secrets.SPOTIFY_CLIENT_SECRET }} \
+            spotify-skip-stats-image
