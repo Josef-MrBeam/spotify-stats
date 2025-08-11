@@ -8,6 +8,10 @@ You can compare this to:
 - View results in a sortable, searchable table
 
 ---
+## 📸 Screenshots
+
+![Main Page](docs/screenshots/app.png)
+---
 
 ## 📦 Features
 - Load Spotify Extended Streaming History (`.json` files from Spotify data export)
